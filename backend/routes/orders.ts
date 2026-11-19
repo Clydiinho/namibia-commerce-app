@@ -61,7 +61,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
 
     // 3. Validate Stock and Calculate Total
     let totalAmount = 0;
-    const processedItems = [];
+    const processedItems: any[] = [];
 
     for (const item of items) {
       const { product_id, quantity } = item;
