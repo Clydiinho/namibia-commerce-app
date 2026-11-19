@@ -36,7 +36,7 @@ async function startServer() {
     if (process.env.NODE_ENV === "production") {
         const distPath = path_1.default.join(process.cwd(), "dist");
         app.use(express_1.default.static(distPath));
-        app.get("*", (req, res) => {
+        app.get("/{*splat}", (req, res) => {
             res.sendFile(path_1.default.join(distPath, "index.html"));
         });
     }
