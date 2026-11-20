@@ -34,12 +34,10 @@ async function startServer() {
   // Facebook Messenger webhook (no /api prefix — Meta calls the URL you configure)
   app.use("/messenger", messengerRouter);
 
-  // Production static file serving (frontend build, if present)
+  // No frontend to serve — the bot only uses API endpoints and Messenger webhooks
   if (process.env.NODE_ENV === "production") {
-    const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
     app.get("/{*splat}", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      res.json({ status: "ok", message: "Namibia Commerce API is running" });
     });
   }
 
